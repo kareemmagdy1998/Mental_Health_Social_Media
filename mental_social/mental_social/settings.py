@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'users',
     'post',
+    'chat',
     
 ]
 
