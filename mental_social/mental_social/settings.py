@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'users',
-    'post',
+    'post.apps.PostConfig',
     'chat',
     
 ]
@@ -82,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Mental_Health_DB',
-        'USER': 'postgres',
-        'PASSWORD': 'kareem_19',
+        'USER': 'openpg',
+        'PASSWORD': 'openpgpwd',
         'HOST': 'localhost',
         'PORT': '5432',
     }
