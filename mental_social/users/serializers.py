@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from users.models import Doctor,Person
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,3 +28,15 @@ class UserSerializer(serializers.ModelSerializer):
             
             return instance
     
+    
+
+class doctorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Doctor
+        fields="__all__"
+     
+      
+class PersonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Person
+        fields="__all__"            

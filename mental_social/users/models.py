@@ -15,16 +15,18 @@ class Person(models.Model):
         (OTHER, 'Other'),
     ]
     
-    person = models.OneToOneField(
+    user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
-        related_name='person_info', # custom related name
-        default=1
+        related_name='person_info' # custom related name
+    
     )
     
     phone = models.CharField(max_length=50, default="phone")
     birth_date = models.DateField(default=datetime.now)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES , default=MALE)
+    user_type = models.CharField(default="user")
+    
 
     
     @property
@@ -35,7 +37,10 @@ class Person(models.Model):
     
     
     def __str__(self):
-        return f'{self.person.first_name} {self.person.last_name}'
+        return f'{self.user.first_name} {self.user.last_name}'
+    
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["password"]
 
 
 class Doctor(models.Model):
@@ -57,11 +62,11 @@ class Doctor(models.Model):
         ('Neurologist', 'Neurologist'),
     ]
     
-    person = models.OneToOneField(
+    user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
-        related_name='doctor', # custom related name
-        default=1
+        related_name='doctor' # custom related name
+        
     )
  
     certificate = models.ImageField(upload_to='certificates/')
@@ -71,6 +76,7 @@ class Doctor(models.Model):
     phone = models.CharField(max_length=50, default="phone")
     birth_date = models.DateField(default=datetime.now)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES , default=MALE)
+    user_type = models.CharField(default="doctor")
 
     
     @property
@@ -81,6 +87,9 @@ class Doctor(models.Model):
     
     
     def __str__(self):
-        return f'{self.person.first_name} {self.person.last_name}'
+        return f'{self.user.first_name} {self.user.last_name}'
     
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["password"]
+
     
