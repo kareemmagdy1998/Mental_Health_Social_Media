@@ -1,8 +1,8 @@
 from django.shortcuts import render,get_object_or_404
 from rest_framework import generics, permissions
 from .models import Comment ,Post
-from .serializers import CommentSerializer
-
+from .serializers import CommentSerializer,PostSerializer
+from .permissions import IsDoctorUser, IsOwnerOrReadOnly
 
 class CommentListCreateView(generics.ListCreateAPIView):
     # queryset = Comment.objects.filter(parent=None)
@@ -23,3 +23,17 @@ class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+
+
+# Create your views here.
+class Posts_List(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    print(queryset)
+    serializer_class = PostSerializer
+    # permission_classes = [IsDoctorUser]
+
+
+class Posts_Pk(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    # permission_classes = [IsOwnerOrReadOnly]
