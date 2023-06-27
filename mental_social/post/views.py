@@ -28,7 +28,7 @@ class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 # Create your views here.
 class Posts_List(generics.ListCreateAPIView):
     queryset = Post.objects.all()
-    print(queryset)
+    # print(queryset)
     serializer_class = PostSerializer
     # permission_classes = [IsDoctorUser]
 
