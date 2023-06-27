@@ -31,12 +31,20 @@ class UserSerializer(serializers.ModelSerializer):
     
 
 class doctorSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
     class Meta:
         model=Doctor
-        fields="__all__"
+        fields=["specialty", "office_location", "years_of_experience", "user_type","phone","birth_date","gender","user"]
+        # fields="__all__"
+    # def create(self, validated_data):
+    #             user_data = validated_data.pop('user')
+    #             user = User.objects.create_user(**user_data)
+    #             doctor = Doctor.objects.create(user=user, **validated_data)
+    #             return doctor
      
       
 class PersonSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
     class Meta:
         model = Person
-        fields="__all__"            
+        fields=[ "user_type","phone","birth_date","gender","user"]
