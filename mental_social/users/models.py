@@ -39,8 +39,7 @@ class Person(models.Model):
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
     
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["password"]
+
 
 
 class Doctor(models.Model):
@@ -69,7 +68,7 @@ class Doctor(models.Model):
         
     )
  
-    certificate = models.ImageField(upload_to='certificates/')
+    certificate = models.ImageField(upload_to='certificates/', null=True)
     specialty = models.CharField(max_length=50, choices=SPECIALTY_CHOICES , default='Dermatologist')
     office_location = models.CharField(max_length=100, null=True, blank=True,default="office")
     years_of_experience = models.PositiveIntegerField(null=True, blank=True, default=1)
@@ -88,8 +87,6 @@ class Doctor(models.Model):
     
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
-    
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["password"]
+ 
 
     
