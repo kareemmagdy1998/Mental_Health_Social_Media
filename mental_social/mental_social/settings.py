@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'users',
-    'post',
+    'post.apps.PostConfig',
     'chat',
     
 ]
@@ -99,8 +99,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Mental_Health_DB',
-        'USER': 'postgres',
-        'PASSWORD': 'kareem_19',
+        'USER': 'kareem',
+        'PASSWORD': 'Kareem_19',
         'HOST': 'localhost',
         'PORT': '5432',
     }
