@@ -9,7 +9,7 @@ class CommentListCreateView(generics.ListCreateAPIView):
     # queryset = Comment.objects.filter(parent=None)
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         post_id = self.kwargs["post_id"]
@@ -24,17 +24,16 @@ class CommentListCreateView(generics.ListCreateAPIView):
 class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    # permission_classes = [permissions.IsAuthenticated, IsCommentOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsCommentOwnerOrReadOnly]
 
 
 class Posts_List(generics.ListCreateAPIView):
     queryset = Post.objects.all()
-    # print(queryset)
     serializer_class = PostSerializer
-    # permission_classes = [IsDoctorUser]
+    permission_classes = [IsDoctorUser]
 
 
 class Posts_Pk(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    # permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
