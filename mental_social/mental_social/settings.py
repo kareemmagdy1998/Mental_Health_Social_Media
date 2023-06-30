@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'users',
-    'post',
+    'post.apps.PostConfig',
     'chat',
     
 ]
@@ -98,13 +98,13 @@ WSGI_APPLICATION = 'mental_social.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "Menatl_Health",
-        "USER": "postgres",
-        "PASSWORD": "1234",
-        "HOST": "localhost",
-        "PORT": "5432",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Mental_Health_DB',
+        'USER': 'kareem',
+        'PASSWORD': 'Kareem_19',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
