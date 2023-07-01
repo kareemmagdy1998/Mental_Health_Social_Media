@@ -1,14 +1,15 @@
 from gettext import translation
 from django.shortcuts import render
 from django.http.response import JsonResponse
-from .serializers import UserSerializer, doctorSerializer, PersonSerializer
+from .serializers import UserSerializer, doctorSerializer, PersonSerializer, ReservationSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Doctor,Person
+from .models import Doctor,Person, Reservation
 from django.contrib.auth.models import User 
 from django.db import transaction
-# Create your views here.
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated 
 
 @api_view(['post'])
 def register(request):
@@ -52,3 +53,14 @@ def update(request):
             model_serializer.save()
             return Response(model_serializer.data, status=status.HTTP_200_OK)
     return Response(model_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ReservationView(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationSerializer
+    def create(self, request, *args, **kwargs):
+        print(request.user.id)
+        person = Person.objects.get(user=request.user)
+        request.data['person'] = person.id
+        return super().create(request, *args, **kwargs)

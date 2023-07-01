@@ -10,7 +10,7 @@ class Person(models.Model):
     FEMALE = 'F'
     OTHER = 'O'
     GENDER_CHOICES = [
-        (MALE, 'Male'),
+        (MALE, 'Male'), 
         (FEMALE, 'Female'),
         (OTHER, 'Other'),
     ]
@@ -89,4 +89,11 @@ class Doctor(models.Model):
         return f'{self.user.first_name} {self.user.last_name}'
  
 
-    
+class Reservation(models.Model):
+        person = models.ForeignKey(Person , related_name='person_reservations' , on_delete=models.CASCADE)
+        doctor = models.ForeignKey(Person , related_name='doctor_reservations' , on_delete=models.CASCADE)  
+        date = models.DateTimeField()
+        class Meta:
+            unique_together = ('doctor', 'date')
+        def __str__(self):
+            return f'{self.person} reserved with {self.doctor} on {self.date}'
