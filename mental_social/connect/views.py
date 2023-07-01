@@ -84,8 +84,10 @@ def list_pending_friend_requests(request):
 @permission_classes([IsAuthenticated])
 def friends_list(request):
     user = request.user
-    friends1 = Friend.objects.filter(user1=user).exclude(user2=user)
-    friends2 = Friend.objects.filter(user2=user).exclude(user1=user)
-    friends = friends1 | friends2
-    serializer = FriendSerializer(friends, many=True)
+    friends1 = Friend.objects.filter(user1=user).values_list('user2', flat=True)
+    friends2 = Friend.objects.filter(user2=user).values_list('user1', flat=True)
+    friend_ids = set(friends1).union(set(friends2))
+    friends = User.objects.filter(id__in=friend_ids)
+    serializer = UserSerializer(friends, many=True)
     return Response(serializer.data)
+

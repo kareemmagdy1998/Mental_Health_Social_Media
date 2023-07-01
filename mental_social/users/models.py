@@ -27,7 +27,7 @@ class Person(models.Model):
     phone = models.CharField(max_length=50, default="phone")
     birth_date = models.DateField(default=datetime.now)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES , default=MALE)
-    user_type = models.CharField(default="user")
+    user_type = models.CharField(default="user", max_length=255)
     
 
     
@@ -77,7 +77,7 @@ class Doctor(models.Model):
     phone = models.CharField(max_length=50, default="phone")
     birth_date = models.DateField(default=datetime.now)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES , default=MALE)
-    user_type = models.CharField(default="doctor")
+    user_type = models.CharField(default="doctor" , max_length=255)
 
     
     @property
