@@ -29,8 +29,9 @@ urlpatterns = [
     
     path('api/',include('users.urls') ),
     
-    path('admin/', admin.site.urls),
-    path('post/',include('post.urls'))
+    path('post/',include('post.urls')),
+    
+    path('connect/',include('connect.urls')),
 ]
 
 
