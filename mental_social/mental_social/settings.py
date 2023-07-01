@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'users',
     'post.apps.PostConfig',
     'chat',
+    'connect',
     
 ]
 

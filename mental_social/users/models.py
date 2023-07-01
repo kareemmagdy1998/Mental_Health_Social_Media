@@ -1,9 +1,9 @@
 from django.db import models
 from datetime import date, datetime
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from django.core.validators import MinLengthValidator
 
+
+    
 
 class Person(models.Model):
     MALE = 'M'
@@ -21,6 +21,8 @@ class Person(models.Model):
         related_name='person_info' # custom related name
     
     )
+    
+
     
     phone = models.CharField(max_length=50, default="phone")
     birth_date = models.DateField(default=datetime.now)
@@ -67,7 +69,7 @@ class Doctor(models.Model):
         related_name='doctor' # custom related name
         
     )
- 
+    
     certificate = models.ImageField(upload_to='certificates/', null=True)
     specialty = models.CharField(max_length=50, choices=SPECIALTY_CHOICES , default='Dermatologist')
     office_location = models.CharField(max_length=100, null=True, blank=True,default="office")
