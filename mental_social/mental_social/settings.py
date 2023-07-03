@@ -101,9 +101,9 @@ WSGI_APPLICATION = 'mental_social.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Menatl_Health',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
+        'NAME': 'Mental_Health_DB',
+        'USER': 'kareem',
+        'PASSWORD': 'Kareem_19',
         'HOST': 'localhost',
         'PORT': '5432',
     }

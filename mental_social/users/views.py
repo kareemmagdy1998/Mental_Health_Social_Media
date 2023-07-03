@@ -19,7 +19,9 @@ def register(request):
     if user_type =='doctor':
         model_serializer = doctorSerializer(data= request.data)
     elif user_type =='person':
-        model_serializer = PersonSerializer(data= request.data)    
+        model_serializer = PersonSerializer(data= request.data) 
+    else:
+        return Response("Invalid user_type specified", status=status.HTTP_400_BAD_REQUEST)       
     user_serializer = UserSerializer(data=request.data)
     if user_serializer.is_valid():
         if model_serializer.is_valid():
