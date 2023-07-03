@@ -37,3 +37,11 @@ class Posts_Pk(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
+
+
+class PostsByCreatorList(generics.ListAPIView):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        creator_id = self.kwargs['creator_id'] 
+        return Post.objects.filter(creator_id=creator_id)
