@@ -34,9 +34,15 @@ urlpatterns = [
     path('post/',include('post.urls')),
     
     path('connect/',include('connect.urls')),
+<<<<<<< HEAD
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+=======
+    path("chat/", include("chat.urls")),
+
+]
+>>>>>>> chat
 
 
 
