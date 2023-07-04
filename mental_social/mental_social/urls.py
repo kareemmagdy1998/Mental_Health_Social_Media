@@ -32,6 +32,8 @@ urlpatterns = [
     path('post/',include('post.urls')),
     
     path('connect/',include('connect.urls')),
+    path("chat/", include("chat.urls")),
+
 ]
 
 
