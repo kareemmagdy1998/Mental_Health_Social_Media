@@ -73,4 +73,16 @@ class ReservationView(viewsets.ModelViewSet):
 def get_user(request):
     user = User.objects.get(username=request.user.username)
     serializer = UserSerializer(user)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    doctor = Doctor.objects.filter(user=user).first()
+    person = Person.objects.filter(user=user).first()
+    user_type = ""
+    if doctor :
+        user_type = "doctor"
+    elif person:
+        user_type = "person"    
+
+    response_data = {
+        'user': serializer.data,
+        'user_type': user_type
+    }
+    return Response(response_data, status=status.HTTP_200_OK)

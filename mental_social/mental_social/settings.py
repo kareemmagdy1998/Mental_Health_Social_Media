@@ -99,9 +99,9 @@ WSGI_APPLICATION = 'mental_social.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Mental_Health_DB',
+        'NAME': 'Menatl_Health',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -151,10 +151,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
-<<<<<<< HEAD
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
-=======
 ASGI_APPLICATION = "mental_social.asgi.application"
 CHANNEL_LAYERS = {
     "default": {
@@ -164,4 +162,3 @@ CHANNEL_LAYERS = {
         },
     },
 }
->>>>>>> chat
