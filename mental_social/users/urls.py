@@ -10,8 +10,6 @@ urlpatterns = [
     path('update/', update),
     path('getuser/', get_user),
     path('get-user-id/', get_user_id)
-    
-
 
 ] + router.urls
  #routs
