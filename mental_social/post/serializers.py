@@ -17,18 +17,20 @@ class CommentSerializer(serializers.ModelSerializer):
         read_only_fields = ['author', 'created_at', 'updated_at']
 
 
-
-
 class PostSerializer(serializers.ModelSerializer):
     creator = serializers.ReadOnlyField(source='creator.username')  
     creator_id = serializers.ReadOnlyField(source='creator.id')  
     comment = CommentSerializer(many=True, read_only=True)
+    likes_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
         fields = "__all__"
-        read_only_fields = ['creator', 'creator_id','created_at']
+        read_only_fields = ['creator', 'creator_id','created_at', "likes_count"]
 
     def create(self, validated_data):
         validated_data['creator'] = self.context['request'].user
         return super().create(validated_data)
+
+    def get_likes_count(self, obj):
+        return obj.likes.count()

@@ -11,8 +11,8 @@ class Post(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    like = models.PositiveIntegerField(default=0, blank=True)
     image = models.ImageField(null=True, blank=True)
+    likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
 
     def __str__(self):
         return f"Post by {self.creator.username} on {self.created_at}"

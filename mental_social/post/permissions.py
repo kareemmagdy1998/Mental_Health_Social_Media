@@ -16,7 +16,9 @@ class IsOwnerOrReadOnly(BasePermission):
         # Read permissions are allowed to any request
         if request.method in ["GET", "HEAD", "OPTIONS"]:
             return True
-
+        if request.method == 'PUT' and view.get_serializer().fields.get('likes'):
+            # Exclude permission check for the 'excluded_field'
+            return True
         # Only the owner of the post can edit or delete it
         print (request.user)
         return obj.creator == request.user
