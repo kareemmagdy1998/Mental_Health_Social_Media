@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'daphne',
+    'channels',
     'chat',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -99,9 +100,9 @@ WSGI_APPLICATION = 'mental_social.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Menatl_Health',
+        'NAME': 'Mental_Health_DB',
         'USER': 'postgres',
-        'PASSWORD': '1234',
+        'PASSWORD': '01124120933',
         'HOST': 'localhost',
         'PORT': '5432',
     }
