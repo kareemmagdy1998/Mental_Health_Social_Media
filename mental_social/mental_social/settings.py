@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'daphne',
+    'channels',
     'chat',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,8 +58,8 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
-'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
+'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+'REFRESH_TOKEN_LIFETIME': timedelta(days=90)
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -99,9 +100,9 @@ WSGI_APPLICATION = 'mental_social.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Menatl_Health',
+        'NAME': 'Mental_Health_DB',
         'USER': 'postgres',
-        'PASSWORD': '1234',
+        'PASSWORD': '01124120933',
         'HOST': 'localhost',
         'PORT': '5432',
     }
