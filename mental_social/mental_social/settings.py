@@ -101,8 +101,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Mental_Health_DB',
-        'USER': 'postgres',
-        'PASSWORD': '01124120933',
+        'USER': 'kareem',
+        'PASSWORD': 'Kareem_19',
         'HOST': 'localhost',
         'PORT': '5432',
     }

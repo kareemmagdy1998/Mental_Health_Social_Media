@@ -9,7 +9,8 @@ class MessageSerialzer(serializers.ModelSerializer):
 
 class ChatSerializer(serializers.ModelSerializer):
     messages = MessageSerialzer(many=True)
-    
+    participant1 = UserSerializer()
+    participant2 = UserSerializer() 
     class Meta:
         model = Chat
         fields ='__all__'   

@@ -58,6 +58,7 @@ def respond_to_friend_request(request):
     if response == 'accept':
        if friend_request.accept():
             serializer = FriendRequestSerializer(friend_request)
+            
             return Response(serializer.data,status.HTTP_200_OK,status)
        return Response("friend_request already had been accepted", status.HTTP_403_FORBIDDEN)
 
@@ -91,3 +92,25 @@ def friends_list(request):
     serializer = UserSerializer(friends, many=True)
     return Response(serializer.data)
 
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def is_friend(request):
+    user_id = request.data.get('id')
+    user = User.objects.get(id=user_id)
+    friendship1 = FriendRequest.objects.filter(sender=request.user, recipient=user)
+    friendship2 = FriendRequest.objects.filter(sender=user, recipient=request.user)
+    if friendship1:
+        serializer = FriendRequestSerializer(friendship1, many=True)
+        return Response(serializer.data)
+    
+    elif friendship2:
+        serializer = FriendRequestSerializer(friendship2, many=True)
+        return Response(serializer.data)
+    
+    else:
+        return Response("false")
+    
+    
+    
