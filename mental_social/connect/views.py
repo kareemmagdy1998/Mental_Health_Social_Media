@@ -58,6 +58,7 @@ def respond_to_friend_request(request):
     if response == 'accept':
        if friend_request.accept():
             serializer = FriendRequestSerializer(friend_request)
+            
             return Response(serializer.data,status.HTTP_200_OK,status)
        return Response("friend_request already had been accepted", status.HTTP_403_FORBIDDEN)
 
