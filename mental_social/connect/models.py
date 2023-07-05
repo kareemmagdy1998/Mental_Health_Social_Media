@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
+from chat.models import Chat
 # Create your models here.
 class Friend(models.Model):
     user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friends1')
@@ -30,7 +30,8 @@ class FriendRequest(models.Model):
             friend = Friend(user1=self.sender, user2=self.recipient)
             print(friend)
             friend.save()
-
+            chat = Chat(participant1=self.sender, participant2=self.recipient)
+            chat.save()
             # Update the friend request status to 'accepted'
             self.status = 'accepted'
             return True
