@@ -21,6 +21,7 @@ class Person(models.Model):
     birth_date = models.DateField(default=datetime.now)
     gender = models.CharField(max_length=20)
     user_type = models.CharField(default="user", max_length=255)
+    profile_picture = models.ImageField()
     
 
     
@@ -46,6 +47,7 @@ class Doctor(models.Model):
         
     )
     
+    profile_picture = models.ImageField()
     certificate = models.ImageField(upload_to='certificates/', null=True)
     specialty = models.CharField(max_length=50)
     office_location = models.CharField(max_length=100, null=True, blank=True,default="office")
@@ -54,6 +56,7 @@ class Doctor(models.Model):
     birth_date = models.DateField(default=datetime.now)
     gender = models.CharField(max_length=50)
     user_type = models.CharField(default="doctor" , max_length=255)
+    about = models.TextField(max_length=250)
 
     
     @property
