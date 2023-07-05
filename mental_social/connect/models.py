@@ -33,7 +33,6 @@ class FriendRequest(models.Model):
 
             # Update the friend request status to 'accepted'
             self.status = 'accepted'
-            self.delete()
             return True
     
     def decline(self):
