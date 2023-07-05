@@ -95,13 +95,21 @@ def friends_list(request):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def is_friend(request, user_id):
+def is_friend(request):
+    user_id = request.data.get('id')
     user = User.objects.get(id=user_id)
-    friendship1 = Friend.objects.filter(user1=request.user, user2=user).first()
-    friendship2 = Friend.objects.filter(user1=user, user2=request.user).first()
-    if friendship1 or friendship2 :
-        return Response("True")
-    return Response("False")
+    friendship1 = FriendRequest.objects.filter(sender=request.user, recipient=user)
+    friendship2 = FriendRequest.objects.filter(sender=user, recipient=request.user)
+    if friendship1:
+        serializer = FriendRequestSerializer(friendship1, many=True)
+        return Response(serializer.data)
+    
+    elif friendship2:
+        serializer = FriendRequestSerializer(friendship2, many=True)
+        return Response(serializer.data)
+    
+    else:
+        return Response("false")
     
     
     
