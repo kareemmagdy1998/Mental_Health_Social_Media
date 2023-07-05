@@ -88,7 +88,9 @@ def get_user(request):
     return Response(response_data, status=status.HTTP_200_OK)
 
 
+
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def get_user_id(request):
     id = request.data.get('id')
     user = User.objects.get(id=id)
