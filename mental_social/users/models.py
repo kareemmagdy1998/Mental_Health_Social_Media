@@ -6,14 +6,7 @@ from django.contrib.auth.models import User
     
 
 class Person(models.Model):
-    MALE = 'M'
-    FEMALE = 'F'
-    OTHER = 'O'
-    GENDER_CHOICES = [
-        (MALE, 'Male'), 
-        (FEMALE, 'Female'),
-        (OTHER, 'Other'),
-    ]
+
     
     user = models.OneToOneField(
         User,
@@ -26,7 +19,7 @@ class Person(models.Model):
     
     phone = models.CharField(max_length=50, default="phone")
     birth_date = models.DateField(default=datetime.now)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES , default=MALE)
+    gender = models.CharField(max_length=20)
     user_type = models.CharField(default="user", max_length=255)
     
 
@@ -46,23 +39,6 @@ class Person(models.Model):
 
 class Doctor(models.Model):
     
-    MALE = 'M'
-    FEMALE = 'F'
-    OTHER = 'O'
-    GENDER_CHOICES = [
-        (MALE, 'Male'),
-        (FEMALE, 'Female'),
-        (OTHER, 'Other'),
-    ]
-    
-    SPECIALTY_CHOICES = [
-        ('Dermatologist', 'Dermatologist'),
-        ('Cardiologist', 'Cardiologist'),
-        ('Pediatrician', 'Pediatrician'),
-        ('Ophthalmologist', 'Ophthalmologist'),
-        ('Neurologist', 'Neurologist'),
-    ]
-    
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
@@ -71,12 +47,12 @@ class Doctor(models.Model):
     )
     
     certificate = models.ImageField(upload_to='certificates/', null=True)
-    specialty = models.CharField(max_length=50, choices=SPECIALTY_CHOICES , default='Dermatologist')
+    specialty = models.CharField(max_length=50)
     office_location = models.CharField(max_length=100, null=True, blank=True,default="office")
     years_of_experience = models.PositiveIntegerField(null=True, blank=True, default=1)
     phone = models.CharField(max_length=50, default="phone")
     birth_date = models.DateField(default=datetime.now)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES , default=MALE)
+    gender = models.CharField(max_length=50)
     user_type = models.CharField(default="doctor" , max_length=255)
 
     

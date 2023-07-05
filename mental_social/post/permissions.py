@@ -18,10 +18,11 @@ class IsOwnerOrReadOnly(BasePermission):
             return True
 
         # Only the owner of the post can edit or delete it
+        print (request.user)
         return obj.creator == request.user
 
 
-class IsCommentOwnerOrReadOnly(BasePermission):
+class IsCommentOwnerOrReadOnly(BasePermission): 
     def has_object_permission(self, request, view, obj):
         if request.method in ["GET", "HEAD", "OPTIONS"]:
             return True

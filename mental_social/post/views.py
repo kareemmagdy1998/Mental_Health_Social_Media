@@ -4,7 +4,6 @@ from .models import Comment, Post
 from .serializers import CommentSerializer, PostSerializer
 from .permissions import IsDoctorUser, IsOwnerOrReadOnly, IsCommentOwnerOrReadOnly
 
-
 class CommentListCreateView(generics.ListCreateAPIView):
     # queryset = Comment.objects.filter(parent=None)
     queryset = Comment.objects.all()
@@ -30,10 +29,17 @@ class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 class Posts_List(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [IsDoctorUser]
+    permission_classes = [permissions.IsAuthenticated , IsOwnerOrReadOnly]
 
 
 class Posts_Pk(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all() 
     serializer_class = PostSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+
+
+class PostsByCreatorList(generics.ListAPIView):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        creator_id = self.kwargs['creator_id'] 
+        return Post.objects.filter(creator_id=creator_id)

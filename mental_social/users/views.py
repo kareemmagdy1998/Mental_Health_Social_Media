@@ -19,7 +19,9 @@ def register(request):
     if user_type =='doctor':
         model_serializer = doctorSerializer(data= request.data)
     elif user_type =='person':
-        model_serializer = PersonSerializer(data= request.data)    
+        model_serializer = PersonSerializer(data= request.data) 
+    else:
+        return Response("Invalid user_type specified", status=status.HTTP_400_BAD_REQUEST)       
     user_serializer = UserSerializer(data=request.data)
     if user_serializer.is_valid():
         if model_serializer.is_valid():
@@ -71,4 +73,16 @@ class ReservationView(viewsets.ModelViewSet):
 def get_user(request):
     user = User.objects.get(username=request.user.username)
     serializer = UserSerializer(user)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    doctor = Doctor.objects.filter(user=user).first()
+    person = Person.objects.filter(user=user).first()
+    user_type = ""
+    if doctor :
+        user_type = "doctor"
+    elif person:
+        user_type = "person"    
+
+    response_data = {
+        'user': serializer.data,
+        'user_type': user_type
+    }
+    return Response(response_data, status=status.HTTP_200_OK)
