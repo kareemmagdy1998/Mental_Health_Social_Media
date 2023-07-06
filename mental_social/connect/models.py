@@ -34,7 +34,7 @@ class FriendRequest(models.Model):
             chat.save()
             # Update the friend request status to 'accepted'
             self.status = 'accepted'
-            self.delete()
+            self.save()
             return True
     
     def decline(self):

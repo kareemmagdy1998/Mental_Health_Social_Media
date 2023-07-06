@@ -56,7 +56,7 @@ class Doctor(models.Model):
     birth_date = models.DateField(default=datetime.now)
     gender = models.CharField(max_length=50)
     user_type = models.CharField(default="doctor" , max_length=255)
-    about = models.TextField(max_length=250)
+    about = models.TextField(max_length=250, blank=True)
 
     
     @property
