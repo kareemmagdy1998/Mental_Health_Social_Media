@@ -10,6 +10,10 @@ from django.contrib.auth.models import User
 from django.db import transaction
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated 
+from .email import send_register_email , send_dr_email
+
+
+
 
 @api_view(['post'])
 def register(request):
@@ -28,6 +32,10 @@ def register(request):
             with transaction.atomic():
                 user = user_serializer.save()
                 model_serializer.save(user=user)
+                if user_type == 'person':
+                    send_register_email(user)
+                elif user_type == 'doctor':
+                    send_dr_email(user)    
                 return Response(model_serializer.data, status=status.HTTP_200_OK)
         errors = model_serializer.errors
     else:
@@ -108,3 +116,5 @@ def get_user_id(request):
         'user_type': user_type
     }
     return Response(response_data, status=status.HTTP_200_OK)
+
+

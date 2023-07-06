@@ -163,3 +163,10 @@ CHANNEL_LAYERS = {
         },
     },
 }
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'commercedjango@gmail.com'
+EMAIL_HOST_PASSWORD = 'audsnslecnkqnkvy'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
